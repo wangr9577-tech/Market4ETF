@@ -1,0 +1,13 @@
+# Ignore source files and dev dependencies for static deployment on GitHub Pages
+node_modules/
+src/
+public/
+package.json
+package-lock.json
+vite.config.js
+README.md
+gh_pages_deploy.log
+.vscode/
+.agents/
+dist/
+*.log
