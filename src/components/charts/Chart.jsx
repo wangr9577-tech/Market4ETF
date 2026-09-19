@@ -15,7 +15,7 @@ export default function Chart({ option, className = 'chart-container', style = {
     if (!chartRef.current) return
 
     if (!instanceRef.current) {
-      instanceRef.current = echarts.init(chartRef.current, 'dark')
+      instanceRef.current = echarts.init(chartRef.current)
     }
     instanceRef.current.setOption(option, true)
 

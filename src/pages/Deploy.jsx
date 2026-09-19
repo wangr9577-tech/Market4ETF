@@ -1,33 +1,47 @@
 import React from 'react'
 import { Tag, Badge, Calendar } from 'antd'
+import {
+  DatabaseOutlined,
+  CalculatorOutlined,
+  NodeIndexOutlined,
+  FilterOutlined,
+  SlidersOutlined,
+  SafetyCertificateOutlined,
+  FileTextOutlined,
+  ClockCircleOutlined,
+  SyncOutlined,
+  AlertOutlined,
+  ShieldOutlined,
+  RiseOutlined
+} from '@ant-design/icons'
 import Chart from '../components/charts/Chart'
 import { rebalanceCalendar, investorProfiles } from '../data/mockData'
 import { ringPieOption, COLORS } from '../utils/chartOptions'
 import dayjs from 'dayjs'
 
 const FLOW_STEPS = [
-  { title: '数据采集', desc: '宏观/估值/行情/情绪', icon: '📡' },
-  { title: '因子计算', desc: '标准化 + 特征工程', icon: '🔢' },
-  { title: 'Regime识别', desc: 'HMM + XGBoost', icon: '🧠' },
-  { title: 'ETF筛选', desc: '候选池构建', icon: '🎯' },
-  { title: '权重优化', desc: 'BL + Risk Parity', icon: '⚖️' },
-  { title: '风控检查', desc: '回撤/波动率约束', icon: '🛡️' },
-  { title: '输出建议', desc: '组合配置报告', icon: '📋' },
+  { title: '数据采集', desc: '宏观/估值/行情/情绪', icon: <DatabaseOutlined style={{ fontSize: 22, color: COLORS.blue }} /> },
+  { title: '因子计算', desc: '标准化 + 特征工程', icon: <CalculatorOutlined style={{ fontSize: 22, color: COLORS.cyan }} /> },
+  { title: 'Regime识别', desc: 'HMM + XGBoost', icon: <NodeIndexOutlined style={{ fontSize: 22, color: COLORS.purple }} /> },
+  { title: 'ETF筛选', desc: '候选池构建', icon: <FilterOutlined style={{ fontSize: 22, color: COLORS.gold }} /> },
+  { title: '权重优化', desc: 'BL + Risk Parity', icon: <SlidersOutlined style={{ fontSize: 22, color: COLORS.orange }} /> },
+  { title: '风控检查', desc: '回撤/波动率约束', icon: <SafetyCertificateOutlined style={{ fontSize: 22, color: COLORS.red }} /> },
+  { title: '输出建议', desc: '组合配置报告', icon: <FileTextOutlined style={{ fontSize: 22, color: COLORS.green }} /> },
 ]
 
 const TRIGGER_RULES = [
   {
-    title: '时间触发', icon: '⏰', color: 'var(--accent-blue)',
+    title: '时间触发', icon: <ClockCircleOutlined />, color: 'var(--accent-blue)',
     desc: '每月最后一个交易日执行定期检查与再平衡',
     details: ['固定月度频率', '避免过度交易', '系统性执行'],
   },
   {
-    title: '状态触发', icon: '🔄', color: 'var(--sideways)',
+    title: '状态触发', icon: <SyncOutlined />, color: 'var(--sideways)',
     desc: 'HMM检测到市场状态切换时立即触发调仓',
     details: ['Regime切换即调仓', '无需等待月末', '响应市场变化'],
   },
   {
-    title: '风险触发', icon: '🚨', color: 'var(--bull)',
+    title: '风险触发', icon: <AlertOutlined />, color: 'var(--bull)',
     desc: '组合回撤超8%或波动率超历史80%分位时触发',
     details: ['回撤 > 8% 降仓', '波动率超限预警', '极端行情保护'],
   },
@@ -68,7 +82,7 @@ export default function Deploy() {
           {FLOW_STEPS.map((step, i) => (
             <React.Fragment key={i}>
               <div className="flow-step">
-                <div style={{ fontSize: '1.5rem', marginBottom: 4 }}>{step.icon}</div>
+                <div style={{ marginBottom: 6 }}>{step.icon}</div>
                 <div className="flow-step-title">{step.title}</div>
                 <div className="flow-step-desc">{step.desc}</div>
               </div>
@@ -85,7 +99,7 @@ export default function Deploy() {
         {TRIGGER_RULES.map((rule, i) => (
           <div className="card" key={i}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-              <span style={{ fontSize: '1.3rem' }}>{rule.icon}</span>
+              <span style={{ fontSize: '1.1rem', color: rule.color }}>{rule.icon}</span>
               <span style={{ fontWeight: 700, color: rule.color, fontSize: '1rem' }}>{rule.title}</span>
             </div>
             <p style={{ fontSize: '0.83rem', color: 'var(--text-secondary)', marginBottom: 12, lineHeight: 1.5 }}>
@@ -139,33 +153,33 @@ export default function Deploy() {
 
       {/* 模拟投顾报告 */}
       <div className="card card-no-hover">
-        <div className="card-title">📋 模拟投顾报告（2025-06-30）</div>
+        <div className="card-title">模拟投顾报告（2025-06-30）</div>
         <div style={{ background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', padding: 'var(--space-lg)', marginTop: 8 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
             <div>
               <h3 style={{ fontSize: '1.1rem', color: 'var(--text-bright)', marginBottom: 4 }}>当前市场研判：震荡市</h3>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>HMM模型识别结果 · 置信度 78%</p>
             </div>
-            <Tag color="orange" style={{ fontSize: '0.85rem', padding: '4px 12px' }}>〰️ 震荡</Tag>
+            <Tag color="orange" style={{ fontSize: '0.85rem', padding: '4px 12px' }}>震荡市</Tag>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
             <div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: 8 }}>操作建议</div>
               <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.83rem', color: 'var(--text-primary)' }}>
-                <li style={{ padding: '4px 0' }}>✅ 维持均衡配置，宽基30% + 红利20%</li>
-                <li style={{ padding: '4px 0' }}>✅ 保留黄金ETF 15% 对冲尾部风险</li>
-                <li style={{ padding: '4px 0' }}>✅ 债券ETF 15% 提供组合稳定锚</li>
-                <li style={{ padding: '4px 0' }}>⚠️ 关注PMI数据，若连续下行则切换至防御配置</li>
+                <li style={{ padding: '4px 0' }}><span style={{ color: COLORS.green, marginRight: 6 }}>●</span>维持均衡配置，宽基30% + 红利20%</li>
+                <li style={{ padding: '4px 0' }}><span style={{ color: COLORS.green, marginRight: 6 }}>●</span>保留黄金ETF 15% 对冲尾部风险</li>
+                <li style={{ padding: '4px 0' }}><span style={{ color: COLORS.green, marginRight: 6 }}>●</span>债券ETF 15% 提供组合稳定锚</li>
+                <li style={{ padding: '4px 0' }}><span style={{ color: COLORS.gold, marginRight: 6 }}>●</span>关注PMI数据，若连续下行则切换至防御配置</li>
               </ul>
             </div>
             <div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: 8 }}>风险提示</div>
               <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.83rem', color: 'var(--text-primary)' }}>
-                <li style={{ padding: '4px 0', color: 'var(--sideways)' }}>⚠️ 市场情绪偏中性，需警惕方向选择</li>
-                <li style={{ padding: '4px 0', color: 'var(--text-secondary)' }}>📊 PE百分位42%，估值合理</li>
-                <li style={{ padding: '4px 0', color: 'var(--text-secondary)' }}>💰 融资余额稳定，无明显异常</li>
-                <li style={{ padding: '4px 0', color: 'var(--text-secondary)' }}>📉 30日波动率处于50%分位，中性</li>
+                <li style={{ padding: '4px 0', color: 'var(--sideways)' }}><span style={{ color: COLORS.gold, marginRight: 6 }}>●</span>市场情绪偏中性，需警惕方向选择</li>
+                <li style={{ padding: '4px 0', color: 'var(--text-secondary)' }}><span style={{ color: COLORS.blue, marginRight: 6 }}>●</span>PE百分位42%，估值合理</li>
+                <li style={{ padding: '4px 0', color: 'var(--text-secondary)' }}><span style={{ color: COLORS.cyan, marginRight: 6 }}>●</span>融资余额稳定，无明显异常</li>
+                <li style={{ padding: '4px 0', color: 'var(--text-secondary)' }}><span style={{ color: COLORS.purple, marginRight: 6 }}>●</span>30日波动率处于50%分位，中性</li>
               </ul>
             </div>
           </div>
@@ -178,12 +192,17 @@ export default function Deploy() {
         <div className="grid-3" style={{ marginTop: 8 }}>
           {investorProfiles.map((profile, i) => {
             const colors = ['var(--bear)', 'var(--accent-blue)', 'var(--bull)']
+            const profileIcons = [
+              <SafetyCertificateOutlined style={{ fontSize: 18, color: colors[0] }} />,
+              <SlidersOutlined style={{ fontSize: 18, color: colors[1] }} />,
+              <RiseOutlined style={{ fontSize: 18, color: colors[2] }} />
+            ]
             const pieData = Object.entries(profile.allocation).map(([name, value]) => ({ name, weight: value }))
 
             return (
               <div key={i} style={{ background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', padding: 'var(--space-lg)', border: `1px solid ${colors[i]}30` }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                  <span style={{ fontSize: '1.2rem' }}>{['🛡️', '⚖️', '🚀'][i]}</span>
+                  <span>{profileIcons[i]}</span>
                   <span style={{ fontWeight: 700, color: colors[i], fontSize: '1rem' }}>{profile.type}</span>
                 </div>
                 <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: 12 }}>{profile.desc}</p>

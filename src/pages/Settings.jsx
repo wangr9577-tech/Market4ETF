@@ -67,17 +67,17 @@ export default function Settings() {
     <div className="settings-page">
       {/* ==================== 顶部信息与Tab栏 ==================== */}
       <div className="settings-header">
-        <div className="settings-tabs-row">
-          <button className={`market-tab ${tab === 0 ? 'active' : ''}`} onClick={() => setTab(0)}>
-            ⚙️ 核心配置与权限
+        <div className="settings-tabs-row" style={{ whiteSpace: 'nowrap' }}>
+          <button className={`market-tab ${tab === 0 ? 'active' : ''}`} onClick={() => setTab(0)} style={{ fontSize: 16 }}>
+            核心配置与权限
           </button>
-          <button className={`market-tab ${tab === 1 ? 'active' : ''}`} onClick={() => setTab(1)}>
-            📡 数据与系统监控
+          <button className={`market-tab ${tab === 1 ? 'active' : ''}`} onClick={() => setTab(1)} style={{ fontSize: 16 }}>
+            数据与系统监控
           </button>
           <div style={{ flex: 1 }} />
-          <div style={{ display: 'flex', gap: 16, fontSize: 13, color: 'var(--text-muted)' }}>
-            <span>当前系统版本：<span style={{ color: COLORS.blue, fontFamily: 'var(--font-mono)', fontWeight: 600 }}>v3.4.1 (Stable)</span></span>
-            <span>运行时间：<span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text)' }}>128天 14小时</span></span>
+          <div style={{ display: 'flex', gap: 14, fontSize: 16, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+            <span>系统版本：<span style={{ color: COLORS.blue, fontFamily: 'var(--font-mono)', fontWeight: 600 }}>v3.4.1</span></span>
+            <span>已运行：<span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text)' }}>128天</span></span>
           </div>
         </div>
       </div>
@@ -88,30 +88,30 @@ export default function Settings() {
           
           {/* 左列：参数配置 */}
           <div className="bento-card set-params-card">
-            <div className="card-title" style={{ fontSize: 14, marginBottom: 12 }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span className="title-dot" />策略与底层模型核心参数
+            <div className="card-title" style={{ fontSize: 18, marginBottom: 8, whiteSpace: 'nowrap' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span className="title-dot" />模型核心参数配置
               </span>
             </div>
             <div style={{ flex: 1, overflowY: 'auto' }}>
-              <table className="factor-table" style={{ width: '100%', fontSize: 13 }}>
+              <table className="factor-table" style={{ width: '100%', fontSize: 16, whiteSpace: 'nowrap' }}>
                 <thead>
                   <tr>
-                    <th style={{ width: '25%', padding: '12px 10px' }}>所属模块</th>
-                    <th style={{ padding: '12px 10px' }}>参数名</th>
-                    <th style={{ width: '20%', padding: '12px 10px' }}>当前值</th>
-                    <th style={{ width: '15%', padding: '12px 10px' }}>类型</th>
+                    <th style={{ width: '25%', padding: '8px 8px' }}>所属模块</th>
+                    <th style={{ padding: '8px 8px' }}>参数名</th>
+                    <th style={{ width: '20%', padding: '8px 8px' }}>当前值</th>
+                    <th style={{ width: '15%', padding: '8px 8px' }}>类型</th>
                   </tr>
                 </thead>
                 <tbody>
                   {PARAMS.map((p, i) => (
                     <tr key={i}>
-                      <td style={{ padding: '10px 10px' }}>
-                        <span style={{ fontSize: 12, padding: '4px 8px', background: 'rgba(255,255,255,0.05)', borderRadius: 4, color: 'var(--text-muted)' }}>{p.module}</span>
+                      <td style={{ padding: '6px 8px' }}>
+                        <span style={{ fontSize: 15, padding: '2px 6px', background: '#f1f5f9', borderRadius: 3, color: 'var(--text-secondary)', fontWeight: 500 }}>{p.module}</span>
                       </td>
-                      <td style={{ fontWeight: 600, color: 'var(--text)', padding: '10px 10px' }}>{p.name}</td>
-                      <td style={{ fontFamily: 'var(--font-mono)', color: COLORS.cyan, fontWeight: 700, padding: '10px 10px', fontSize: 14 }}>{p.value}</td>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-secondary)', padding: '10px 10px' }}>{p.type}</td>
+                      <td style={{ fontWeight: 600, color: 'var(--text-bright)', padding: '6px 8px' }}>{p.name}</td>
+                      <td style={{ fontFamily: 'var(--font-mono)', color: COLORS.cyan, fontWeight: 700, padding: '6px 8px', fontSize: 17 }}>{p.value}</td>
+                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--text-secondary)', padding: '6px 8px' }}>{p.type}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -121,24 +121,24 @@ export default function Settings() {
 
           {/* 右上：系统开关 */}
           <div className="bento-card set-toggles-card">
-            <div className="card-title" style={{ fontSize: 14, marginBottom: 12 }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span className="title-dot" />系统功能全局热开关
+            <div className="card-title" style={{ fontSize: 18, marginBottom: 8, whiteSpace: 'nowrap' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span className="title-dot" />系统全局热开关
               </span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: 1, overflowY: 'auto', paddingRight: 4 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, overflowY: 'auto', paddingRight: 4 }}>
               {[
                 { label: '自动交易执行', desc: '根据组合权重自动生成订单', checked: true },
-                { label: '风险预警广播', desc: '回撤超限时推送邮件与短息', checked: true },
+                { label: '风险预警广播', desc: '回撤超限时推送邮件与短信', checked: true },
                 { label: '雪球情绪因子', desc: '将外部情绪数据纳入HMM考量', checked: true },
                 { label: '超高频实时行情', desc: '开启WebSocket秒级同步', checked: false },
                 { label: '因子暴露度硬约束', desc: '风格因子暴露禁止超过限定阈值', checked: true },
                 { label: '数据库只读模式', desc: '禁止除调仓外的所有写入操作', checked: false },
               ].map((item, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.02)', padding: '14px 18px', borderRadius: 8, border: '1px solid var(--border)' }}>
+                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f8fafc', padding: '8px 12px', borderRadius: 6, border: '1px solid var(--border)' }}>
                   <div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: item.checked ? 'var(--text)' : 'var(--text-muted)' }}>{item.label}</div>
-                    <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 6 }}>{item.desc}</div>
+                    <div style={{ fontSize: 17, fontWeight: 600, color: item.checked ? 'var(--text-bright)' : 'var(--text-muted)', whiteSpace: 'nowrap' }}>{item.label}</div>
+                    <div style={{ fontSize: 15, color: 'var(--text-secondary)', marginTop: 2, whiteSpace: 'nowrap' }}>{item.desc}</div>
                   </div>
                   <CustomSwitch checked={item.checked} />
                 </div>
@@ -148,26 +148,26 @@ export default function Settings() {
 
           {/* 右下：用户管理 */}
           <div className="bento-card set-users-card">
-            <div className="card-title" style={{ fontSize: 14, marginBottom: 12 }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span className="title-dot" />系统会话与操作白名单
+            <div className="card-title" style={{ fontSize: 18, marginBottom: 8, whiteSpace: 'nowrap' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span className="title-dot" />用户操作白名单
               </span>
             </div>
             <div style={{ flex: 1, overflowY: 'auto' }}>
-              <table className="factor-table" style={{ width: '100%', fontSize: 13 }}>
+              <table className="factor-table" style={{ width: '100%', fontSize: 16, whiteSpace: 'nowrap' }}>
                 <thead>
                   <tr>
-                    <th style={{ padding: '12px 10px' }}>会话用户</th>
-                    <th style={{ width: '30%', padding: '12px 10px' }}>系统角色</th>
-                    <th style={{ width: '35%', padding: '12px 10px' }}>最后心跳时间</th>
+                    <th style={{ padding: '8px 8px' }}>会话用户</th>
+                    <th style={{ width: '30%', padding: '8px 8px' }}>系统角色</th>
+                    <th style={{ width: '35%', padding: '8px 8px' }}>最后心跳时间</th>
                   </tr>
                 </thead>
                 <tbody>
                   {USERS.map((u, i) => (
                     <tr key={i}>
-                      <td style={{ fontWeight: 600, color: u.name.includes('Admin') ? COLORS.gold : 'var(--text)', padding: '10px 10px' }}>{u.name}</td>
-                      <td style={{ padding: '10px 10px' }}><span style={{ fontSize: 12, padding: '3px 8px', borderRadius: 4, background: 'rgba(100,120,200,0.1)', color: 'var(--text-secondary)' }}>{u.role}</span></td>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: u.lastLogin.includes('实时') ? COLORS.green : 'var(--text-muted)', padding: '10px 10px' }}>{u.lastLogin}</td>
+                      <td style={{ fontWeight: 600, color: u.name.includes('Admin') ? COLORS.gold : 'var(--text-bright)', padding: '6px 8px' }}>{u.name}</td>
+                      <td style={{ padding: '6px 8px' }}><span style={{ fontSize: 15, padding: '2px 6px', borderRadius: 3, background: '#eff6ff', color: COLORS.blue, fontWeight: 500 }}>{u.role}</span></td>
+                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: 15, color: u.lastLogin.includes('实时') ? COLORS.green : 'var(--text-muted)', padding: '6px 8px' }}>{u.lastLogin}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -184,56 +184,56 @@ export default function Settings() {
           
           {/* 顶部横幅：KPI */}
           <div className="set-kpi-row">
-            <div className="bento-card" style={{ flex: 1, padding: '16px 24px' }}>
-              <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 8 }}>总线特征库规模</div>
-              <div style={{ fontSize: 26, fontFamily: 'var(--font-mono)', fontWeight: 700, color: COLORS.blue }}>131,300 <span style={{ fontSize: 14, fontWeight: 400, color: 'var(--text-muted)' }}>条记录</span></div>
+            <div className="bento-card" style={{ flex: 1, padding: '10px 16px', whiteSpace: 'nowrap' }}>
+              <div style={{ fontSize: 15, color: 'var(--text-muted)', marginBottom: 4 }}>特征库规模</div>
+              <div style={{ fontSize: 26, fontFamily: 'var(--font-mono)', fontWeight: 700, color: COLORS.blue }}>13.1万 <span style={{ fontSize: 16, fontWeight: 400, color: 'var(--text-muted)' }}>条记录</span></div>
             </div>
-            <div className="bento-card" style={{ flex: 1, padding: '16px 24px' }}>
-              <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 8 }}>数据源活跃状态</div>
-              <div style={{ fontSize: 26, fontFamily: 'var(--font-mono)', fontWeight: 700, color: COLORS.gold }}>7 / 7 <span style={{ fontSize: 14, fontWeight: 400, color: 'var(--text-muted)' }}>在线</span></div>
+            <div className="bento-card" style={{ flex: 1, padding: '10px 16px', whiteSpace: 'nowrap' }}>
+              <div style={{ fontSize: 15, color: 'var(--text-muted)', marginBottom: 4 }}>数据源活跃</div>
+              <div style={{ fontSize: 26, fontFamily: 'var(--font-mono)', fontWeight: 700, color: COLORS.gold }}>7 / 7 <span style={{ fontSize: 16, fontWeight: 400, color: 'var(--text-muted)' }}>在线</span></div>
             </div>
-            <div className="bento-card" style={{ flex: 1, padding: '16px 24px' }}>
-              <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 8 }}>平均接口延迟</div>
-              <div style={{ fontSize: 26, fontFamily: 'var(--font-mono)', fontWeight: 700, color: COLORS.green }}>45.2 <span style={{ fontSize: 14, fontWeight: 400, color: 'var(--text-muted)' }}>ms</span></div>
+            <div className="bento-card" style={{ flex: 1, padding: '10px 16px', whiteSpace: 'nowrap' }}>
+              <div style={{ fontSize: 15, color: 'var(--text-muted)', marginBottom: 4 }}>接口平均时延</div>
+              <div style={{ fontSize: 26, fontFamily: 'var(--font-mono)', fontWeight: 700, color: COLORS.green }}>45.2 <span style={{ fontSize: 16, fontWeight: 400, color: 'var(--text-muted)' }}>ms</span></div>
             </div>
-            <div className="bento-card" style={{ flex: 1, padding: '16px 24px' }}>
-              <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 8 }}>模型集群负载</div>
-              <div style={{ fontSize: 26, fontFamily: 'var(--font-mono)', fontWeight: 700, color: COLORS.text }}>14.5% <span style={{ fontSize: 14, fontWeight: 400, color: 'var(--text-muted)' }}>CPU</span></div>
+            <div className="bento-card" style={{ flex: 1, padding: '10px 16px', whiteSpace: 'nowrap' }}>
+              <div style={{ fontSize: 15, color: 'var(--text-muted)', marginBottom: 4 }}>集群系统负载</div>
+              <div style={{ fontSize: 26, fontFamily: 'var(--font-mono)', fontWeight: 700, color: COLORS.text }}>14.5% <span style={{ fontSize: 16, fontWeight: 400, color: 'var(--text-muted)' }}>CPU</span></div>
             </div>
           </div>
 
           <div className="settings-subgrid">
             {/* 左下：外部数据源监控 */}
             <div className="bento-card set-data-card">
-              <div className="card-title" style={{ fontSize: 14, marginBottom: 12 }}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span className="title-dot" />API接入层状态诊断
+              <div className="card-title" style={{ fontSize: 18, marginBottom: 8, whiteSpace: 'nowrap' }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span className="title-dot" />API 状态诊断
                 </span>
               </div>
               <div style={{ flex: 1, overflowY: 'auto' }}>
-                <table className="factor-table" style={{ width: '100%', fontSize: 13 }}>
+                <table className="factor-table" style={{ width: '100%', fontSize: 16, whiteSpace: 'nowrap' }}>
                   <thead>
                     <tr>
-                      <th style={{ width: '20%', padding: '12px 10px' }}>提供商</th>
-                      <th style={{ padding: '12px 10px' }}>数据类别</th>
-                      <th style={{ width: '15%', padding: '12px 10px' }}>连通性</th>
-                      <th style={{ width: '20%', padding: '12px 10px' }}>数据鲜活度</th>
-                      <th style={{ width: '15%', padding: '12px 10px' }}>时延</th>
+                      <th style={{ width: '20%', padding: '8px 8px' }}>提供商</th>
+                      <th style={{ padding: '8px 8px' }}>数据类别</th>
+                      <th style={{ width: '15%', padding: '8px 8px' }}>连通性</th>
+                      <th style={{ width: '20%', padding: '8px 8px' }}>鲜活度</th>
+                      <th style={{ width: '15%', padding: '8px 8px' }}>时延</th>
                     </tr>
                   </thead>
                   <tbody>
                     {DATA_SOURCES.map((d, i) => (
                       <tr key={i}>
-                        <td style={{ fontWeight: 600, padding: '12px 10px' }}>{d.source}</td>
-                        <td style={{ color: 'var(--text-muted)', padding: '12px 10px' }}>{d.type}</td>
-                        <td style={{ padding: '12px 10px' }}>
+                        <td style={{ fontWeight: 600, padding: '6px 8px' }}>{d.source}</td>
+                        <td style={{ color: 'var(--text-muted)', padding: '6px 8px' }}>{d.type}</td>
+                        <td style={{ padding: '6px 8px' }}>
                           <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <span style={{ width: 8, height: 8, borderRadius: '50%', background: d.status === '正常' ? COLORS.green : COLORS.orange }} />
-                            <span style={{ fontSize: 13, color: d.status === '正常' ? COLORS.green : COLORS.orange }}>{d.status}</span>
+                            <span style={{ width: 6, height: 6, borderRadius: '50%', background: d.status === '正常' ? COLORS.green : COLORS.orange }} />
+                            <span style={{ fontSize: 16, color: d.status === '正常' ? COLORS.green : COLORS.orange }}>{d.status}</span>
                           </span>
                         </td>
-                        <td style={{ fontSize: 12, color: 'var(--text-secondary)', padding: '12px 10px' }}>{d.lastUpdate}</td>
-                        <td style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: d.latency === 'timeout' ? COLORS.red : 'var(--text)', padding: '12px 10px' }}>{d.latency}</td>
+                        <td style={{ fontSize: 15, color: 'var(--text-secondary)', padding: '6px 8px' }}>{d.lastUpdate}</td>
+                        <td style={{ fontFamily: 'var(--font-mono)', fontSize: 16, color: d.latency === 'timeout' ? COLORS.red : 'var(--text)', padding: '6px 8px' }}>{d.latency}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -243,26 +243,26 @@ export default function Settings() {
 
             {/* 右下：日志流 */}
             <div className="bento-card set-logs-card" style={{ background: '#0a0d18', border: '1px solid #1a223a' }}>
-              <div className="card-title" style={{ fontSize: 14, marginBottom: 16, borderBottom: '1px solid #1a223a', paddingBottom: 12 }}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span className="title-dot" />sys_daemon stdout
+              <div className="card-title" style={{ fontSize: 18, marginBottom: 10, borderBottom: '1px solid #1a223a', paddingBottom: 8, whiteSpace: 'nowrap' }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span className="title-dot" />系统实时日志
                 </span>
-                <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: COLORS.green }}>● LIVE</span>
+                <span style={{ fontSize: 15, fontFamily: 'var(--font-mono)', color: COLORS.green }}>● LIVE</span>
               </div>
-              <div style={{ flex: 1, overflowY: 'auto', fontFamily: "'JetBrains Mono', monospace", fontSize: 13, display: 'flex', flexDirection: 'column', gap: 8, paddingRight: 4, lineHeight: 1.6 }}>
+              <div style={{ flex: 1, overflowY: 'auto', fontFamily: "'JetBrains Mono', monospace", fontSize: 16, display: 'flex', flexDirection: 'column', gap: 6, paddingRight: 4, lineHeight: 1.5 }}>
                 {LOGS.map((log, i) => (
-                  <div key={i} style={{ display: 'flex', gap: 12 }}>
+                  <div key={i} style={{ display: 'flex', gap: 8, whiteSpace: 'nowrap' }}>
                     <span style={{ color: 'var(--text-muted)', flexShrink: 0 }}>[{log.time}]</span>
                     <span style={{ 
                       color: log.level === 'INFO' ? COLORS.blue : COLORS.orange, 
                       fontWeight: 600, width: 45, flexShrink: 0 
                     }}>{log.level}</span>
-                    <span style={{ color: log.level === 'WARN' ? COLORS.gold : 'var(--text-secondary)' }}>
+                    <span style={{ color: log.level === 'WARN' ? COLORS.gold : '#94a3b8', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {log.msg}
                     </span>
                   </div>
                 ))}
-                <div style={{ display: 'flex', gap: 12, marginTop: 8, animation: 'pulse 1.5s infinite' }}>
+                <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
                   <span style={{ color: 'var(--text-muted)' }}>[14:35:02]</span>
                   <span style={{ color: COLORS.blue, fontWeight: 600 }}>_</span>
                 </div>

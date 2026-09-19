@@ -1,47 +1,51 @@
 /**
  * ECharts 全局配置工厂
- * 统一深色金融主题下的图表风格
+ * 统一金融机构专业浅色主题下的图表风格
  */
 
 const COLORS = {
-  blue: '#409eff',
-  gold: '#f6c954',
-  cyan: '#22d3ee',
-  purple: '#8b5cf6',
-  red: '#e25555',
-  green: '#2dc78a',
-  orange: '#e6a23c',
-  gray: '#5b6282',
-  lightGray: '#8b92b0',
-  bg: '#080c24',
-  bgAlt: '#141d52',
-  border: 'rgba(100,120,200,0.12)',
-  text: '#d0d4e8',
-  textMuted: '#5b6282',
+  blue: '#1677ff',
+  gold: '#d97706',
+  cyan: '#0891b2',
+  purple: '#7c3aed',
+  red: '#dc2626',
+  green: '#16a34a',
+  orange: '#ea580c',
+  gray: '#94a3b8',
+  lightGray: '#64748b',
+  bg: '#ffffff',
+  bgAlt: '#f8fafc',
+  border: '#e2e8f0',
+  text: '#1e293b',
+  textMuted: '#64748b',
+  textBright: '#0f172a',
 }
 
 const REGIME_COLORS = {
-  bull: 'rgba(226,85,85,0.08)',
-  bear: 'rgba(45,199,138,0.08)',
-  sideways: 'rgba(230,162,60,0.08)',
-  'high-vol': 'rgba(139,92,246,0.08)',
+  bull: 'rgba(220,38,38,0.08)',
+  bear: 'rgba(22,163,74,0.08)',
+  sideways: 'rgba(217,119,6,0.08)',
+  'high-vol': 'rgba(124,58,237,0.08)',
 }
 
 /** 基础配置 mixin */
 const baseOption = () => ({
   backgroundColor: 'transparent',
-  textStyle: { fontFamily: "'Inter', sans-serif", color: COLORS.text },
-  grid: { top: 50, right: 20, bottom: 40, left: 60, containLabel: true },
+  textStyle: { fontFamily: "'Inter', -apple-system, 'Microsoft YaHei', sans-serif", color: COLORS.text },
+  grid: { top: 40, right: 20, bottom: 35, left: 55, containLabel: true },
   tooltip: {
     trigger: 'axis',
-    backgroundColor: COLORS.bgAlt,
-    borderColor: COLORS.border,
-    textStyle: { color: COLORS.text, fontSize: 12 },
+    backgroundColor: 'rgba(255, 255, 255, 0.98)',
+    borderColor: '#e2e8f0',
+    borderWidth: 1,
+    padding: [8, 12],
+    extraCssText: 'box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08); border-radius: 6px;',
+    textStyle: { color: COLORS.textBright, fontSize: 17 },
   },
   legend: {
-    textStyle: { color: COLORS.lightGray, fontSize: 12 },
+    textStyle: { color: COLORS.lightGray, fontSize: 17 },
     top: 5,
-    itemGap: 20,
+    itemGap: 16,
   },
 })
 
@@ -75,13 +79,13 @@ export function navLineOption(dates, series, regimes) {
       type: 'category',
       data: dates,
       axisLine: { lineStyle: { color: COLORS.border } },
-      axisLabel: { color: COLORS.textMuted, fontSize: 11 },
+      axisLabel: { color: COLORS.textMuted, fontSize: 16 },
       axisTick: { show: false },
     },
     yAxis: {
       type: 'value',
       axisLine: { show: false },
-      axisLabel: { color: COLORS.textMuted, fontSize: 11 },
+      axisLabel: { color: COLORS.textMuted, fontSize: 16 },
       splitLine: { lineStyle: { color: COLORS.border } },
     },
     series: series.map((s, idx) => ({
@@ -112,14 +116,14 @@ export function ringPieOption(data, title = '') {
       avoidLabelOverlap: true,
       itemStyle: { borderRadius: 6, borderColor: COLORS.bg, borderWidth: 2 },
       label: { show: false },
-      emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold', color: COLORS.text } },
+      emphasis: { label: { show: true, fontSize: 19, fontWeight: 'bold', color: COLORS.text } },
       data: data.map((d, i) => ({
         name: d.name,
         value: d.weight || d.value,
         itemStyle: { color: [COLORS.blue, COLORS.green, COLORS.gold, COLORS.cyan, COLORS.purple, COLORS.orange, COLORS.red][i % 7] },
       })),
     }],
-    graphic: title ? [{ type: 'text', left: '37%', top: '45%', style: { text: title, fill: COLORS.textMuted, fontSize: 12, textAlign: 'center' } }] : [],
+    graphic: title ? [{ type: 'text', left: '37%', top: '45%', style: { text: title, fill: COLORS.textMuted, fontSize: 17, textAlign: 'center' } }] : [],
   }
 }
 
@@ -143,12 +147,12 @@ export function gaugeOption(value, title = '市场情绪') {
       pointer: { length: '60%', width: 4, itemStyle: { color } },
       axisTick: { show: false },
       splitLine: { length: 10, lineStyle: { color: COLORS.textMuted, width: 1 } },
-      axisLabel: { color: COLORS.textMuted, fontSize: 10, distance: 15 },
+      axisLabel: { color: COLORS.textMuted, fontSize: 15, distance: 15 },
       detail: {
-        fontSize: 28, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color,
+        fontSize: 33, fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, color,
         offsetCenter: [0, '30%'], formatter: '{value}',
       },
-      title: { offsetCenter: [0, '55%'], fontSize: 12, color: COLORS.textMuted },
+      title: { offsetCenter: [0, '55%'], fontSize: 17, color: COLORS.textMuted },
       data: [{ value, name: title }],
     }],
   }
@@ -162,7 +166,7 @@ export function radarOption(indicators, data, title = '') {
       indicator: indicators.map((ind) => ({ name: ind.name, max: 100 })),
       shape: 'polygon',
       splitNumber: 4,
-      axisName: { color: COLORS.lightGray, fontSize: 11 },
+      axisName: { color: COLORS.lightGray, fontSize: 16 },
       splitLine: { lineStyle: { color: COLORS.border } },
       splitArea: { areaStyle: { color: ['transparent', COLORS.bgAlt] } },
       axisLine: { lineStyle: { color: COLORS.border } },
@@ -185,10 +189,10 @@ export function heatmapOption(xLabels, yLabels, data, min = -1, max = 1) {
     ...baseOption(),
     grid: { top: 30, right: 80, bottom: 60, left: 80 },
     tooltip: { position: 'top', formatter: (p) => `${xLabels[p.value[0]]} × ${yLabels[p.value[1]]}<br/>相关系数: ${p.value[2].toFixed(2)}` },
-    xAxis: { type: 'category', data: xLabels, axisLabel: { color: COLORS.textMuted, fontSize: 11, rotate: 30 }, splitArea: { show: true, areaStyle: { color: ['transparent', COLORS.bgAlt] } } },
-    yAxis: { type: 'category', data: yLabels, axisLabel: { color: COLORS.textMuted, fontSize: 11 } },
-    visualMap: { min, max, calculable: true, orient: 'vertical', right: 5, top: 'center', inRange: { color: [COLORS.green, '#1A2035', COLORS.red] }, textStyle: { color: COLORS.textMuted } },
-    series: [{ type: 'heatmap', data, itemStyle: { borderColor: COLORS.bg, borderWidth: 2 }, emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.5)' } } }],
+    xAxis: { type: 'category', data: xLabels, axisLabel: { color: COLORS.textMuted, fontSize: 16, rotate: 30 }, splitArea: { show: true, areaStyle: { color: ['transparent', COLORS.bgAlt] } } },
+    yAxis: { type: 'category', data: yLabels, axisLabel: { color: COLORS.textMuted, fontSize: 16 } },
+    visualMap: { min, max, calculable: true, orient: 'vertical', right: 5, top: 'center', inRange: { color: [COLORS.green, '#f1f5f9', COLORS.red] }, textStyle: { color: COLORS.textMuted } },
+    series: [{ type: 'heatmap', data, itemStyle: { borderColor: '#ffffff', borderWidth: 2 }, emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.15)' } } }],
   }
 }
 
@@ -198,8 +202,8 @@ export function factorLineOption(dates, factors) {
   return {
     ...baseOption(),
     legend: { ...baseOption().legend, data: factors.map((f) => f.name) },
-    xAxis: { type: 'category', data: dates, axisLine: { lineStyle: { color: COLORS.border } }, axisLabel: { color: COLORS.textMuted, fontSize: 11 }, axisTick: { show: false } },
-    yAxis: { type: 'value', axisLine: { show: false }, axisLabel: { color: COLORS.textMuted, fontSize: 11 }, splitLine: { lineStyle: { color: COLORS.border } } },
+    xAxis: { type: 'category', data: dates, axisLine: { lineStyle: { color: COLORS.border } }, axisLabel: { color: COLORS.textMuted, fontSize: 16 }, axisTick: { show: false } },
+    yAxis: { type: 'value', axisLine: { show: false }, axisLabel: { color: COLORS.textMuted, fontSize: 16 }, splitLine: { lineStyle: { color: '#f1f5f9' } } },
     series: factors.map((f, i) => ({
       name: f.name, type: 'line', data: f.data.map((v) => Math.round(v * 100) / 100), smooth: true, symbol: 'none',
       lineStyle: { width: 2, color: colors[i % colors.length] }, itemStyle: { color: colors[i % colors.length] },
@@ -213,8 +217,8 @@ export function groupBarOption(categories, series) {
   return {
     ...baseOption(),
     legend: { ...baseOption().legend, data: series.map((s) => s.name) },
-    xAxis: { type: 'category', data: categories, axisLine: { lineStyle: { color: COLORS.border } }, axisLabel: { color: COLORS.textMuted, fontSize: 11 } },
-    yAxis: { type: 'value', axisLine: { show: false }, axisLabel: { color: COLORS.textMuted, fontSize: 11, formatter: '{value}%' }, splitLine: { lineStyle: { color: COLORS.border } } },
+    xAxis: { type: 'category', data: categories, axisLine: { lineStyle: { color: COLORS.border } }, axisLabel: { color: COLORS.textMuted, fontSize: 16 } },
+    yAxis: { type: 'value', axisLine: { show: false }, axisLabel: { color: COLORS.textMuted, fontSize: 16, formatter: '{value}%' }, splitLine: { lineStyle: { color: '#f1f5f9' } } },
     series: series.map((s) => ({
       name: s.name, type: 'bar', data: s.data, itemStyle: { color: s.color, borderRadius: [4, 4, 0, 0] }, barMaxWidth: 30,
     })),
@@ -227,8 +231,8 @@ export function drawdownOption(dates, data) {
     ...baseOption(),
     grid: { top: 20, bottom: 30, left: 60, right: 20 },
     xAxis: { type: 'category', data: dates, show: false },
-    yAxis: { type: 'value', axisLine: { show: false }, axisLabel: { color: COLORS.textMuted, fontSize: 11, formatter: '{value}%' }, splitLine: { lineStyle: { color: COLORS.border } } },
-    series: [{ type: 'bar', data, itemStyle: { color: COLORS.red + '80', borderRadius: [0, 0, 2, 2] } }],
+    yAxis: { type: 'value', axisLine: { show: false }, axisLabel: { color: COLORS.textMuted, fontSize: 16, formatter: '{value}%' }, splitLine: { lineStyle: { color: '#f1f5f9' } } },
+    series: [{ type: 'bar', data, itemStyle: { color: COLORS.red + '90', borderRadius: [0, 0, 2, 2] } }],
     tooltip: { trigger: 'axis', formatter: (p) => `${p[0].axisValue}<br/>回撤: ${p[0].value}%` },
   }
 }
@@ -237,13 +241,13 @@ export function drawdownOption(dates, data) {
 export function scatterOption(points, optimal) {
   return {
     ...baseOption(),
-    xAxis: { type: 'value', name: '风险 (%)', nameTextStyle: { color: COLORS.textMuted }, axisLabel: { color: COLORS.textMuted, fontSize: 11 }, splitLine: { lineStyle: { color: COLORS.border } } },
-    yAxis: { type: 'value', name: '收益 (%)', nameTextStyle: { color: COLORS.textMuted }, axisLabel: { color: COLORS.textMuted, fontSize: 11 }, splitLine: { lineStyle: { color: COLORS.border } } },
+    xAxis: { type: 'value', name: '风险 (%)', nameTextStyle: { color: COLORS.textMuted }, axisLabel: { color: COLORS.textMuted, fontSize: 16 }, splitLine: { lineStyle: { color: '#f1f5f9' } } },
+    yAxis: { type: 'value', name: '收益 (%)', nameTextStyle: { color: COLORS.textMuted }, axisLabel: { color: COLORS.textMuted, fontSize: 16 }, splitLine: { lineStyle: { color: '#f1f5f9' } } },
     series: [
       { type: 'scatter', data: points.map((p) => [p.risk, p.return]), symbolSize: 6, itemStyle: { color: COLORS.blue + '80' } },
       {
         type: 'scatter', data: [[optimal.risk, optimal.return]], symbolSize: 16, itemStyle: { color: COLORS.gold },
-        label: { show: true, formatter: optimal.label, position: 'right', color: COLORS.gold, fontSize: 12 },
+        label: { show: true, formatter: optimal.label, position: 'right', color: COLORS.gold, fontSize: 17 },
       },
     ],
   }
@@ -257,10 +261,10 @@ export function calendarHeatmapOption(data) {
     ...baseOption(),
     grid: { top: 30, right: 80, bottom: 30, left: 80 },
     tooltip: { formatter: (p) => `${years[p.value[1]]}年${months[p.value[0]]}<br/>收益率: ${p.value[2]}%` },
-    xAxis: { type: 'category', data: months, axisLabel: { color: COLORS.textMuted, fontSize: 10 }, splitArea: { show: true, areaStyle: { color: ['transparent', COLORS.bgAlt] } } },
-    yAxis: { type: 'category', data: years, axisLabel: { color: COLORS.textMuted, fontSize: 11 } },
-    visualMap: { min: -8, max: 8, calculable: true, orient: 'vertical', right: 5, top: 'center', inRange: { color: [COLORS.green, '#1A2035', COLORS.red] }, textStyle: { color: COLORS.textMuted } },
-    series: [{ type: 'heatmap', data, itemStyle: { borderColor: COLORS.bg, borderWidth: 3, borderRadius: 4 }, label: { show: true, color: COLORS.text, fontSize: 10, formatter: (p) => p.value[2] > 0 ? `+${p.value[2]}` : p.value[2] } }],
+    xAxis: { type: 'category', data: months, axisLabel: { color: COLORS.textMuted, fontSize: 15 }, splitArea: { show: true, areaStyle: { color: ['transparent', COLORS.bgAlt] } } },
+    yAxis: { type: 'category', data: years, axisLabel: { color: COLORS.textMuted, fontSize: 16 } },
+    visualMap: { min: -8, max: 8, calculable: true, orient: 'vertical', right: 5, top: 'center', inRange: { color: [COLORS.green, '#f1f5f9', COLORS.red] }, textStyle: { color: COLORS.textMuted } },
+    series: [{ type: 'heatmap', data, itemStyle: { borderColor: '#ffffff', borderWidth: 2, borderRadius: 4 }, label: { show: true, color: COLORS.textBright, fontSize: 15, formatter: (p) => p.value[2] > 0 ? `+${p.value[2]}` : p.value[2] } }],
   }
 }
 
@@ -286,7 +290,7 @@ export function sankeyOption(states, matrix) {
       data: [...nodes, ...targetNodes].map((n, i) => ({ ...n, itemStyle: { color: stateColors[i % stateColors.length] } })),
       links,
       lineStyle: { color: 'gradient', curveness: 0.5, opacity: 0.4 },
-      label: { color: COLORS.text, fontSize: 12 },
+      label: { color: COLORS.text, fontSize: 17 },
     }],
   }
 }

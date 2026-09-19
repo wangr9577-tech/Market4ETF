@@ -1,33 +1,33 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { ConfigProvider, theme } from 'antd'
 import zhCN from 'antd/locale/zh_CN'
 import App from './App'
 import './styles/globals.css'
 
-const darkTheme = {
-  algorithm: theme.darkAlgorithm,
+const lightTheme = {
+  algorithm: theme.defaultAlgorithm,
   token: {
-    colorPrimary: '#409eff',
-    colorBgBase: '#080c24',
-    colorBgContainer: '#0f1740',
-    colorBgElevated: '#141d52',
-    colorBorder: 'rgba(100,120,200,0.12)',
-    colorText: '#d0d4e8',
-    colorTextSecondary: '#8b92b0',
-    borderRadius: 6,
-    fontFamily: "'Inter','Microsoft YaHei',sans-serif",
-    fontSize: 13,
+    colorPrimary: '#1677ff',
+    colorBgBase: '#ffffff',
+    colorBgContainer: '#ffffff',
+    colorBgElevated: '#ffffff',
+    colorBorder: '#e2e8f0',
+    colorText: '#1e293b',
+    colorTextSecondary: '#64748b',
+    borderRadius: 8,
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+    fontSize: 18,
   },
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ConfigProvider theme={darkTheme} locale={zhCN}>
+    <HashRouter>
+      <ConfigProvider theme={lightTheme} locale={zhCN}>
         <App />
       </ConfigProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 )

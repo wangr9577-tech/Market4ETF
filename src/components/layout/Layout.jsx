@@ -1,12 +1,21 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import {
+  DashboardOutlined,
+  LineChartOutlined,
+  PieChartOutlined,
+  HistoryOutlined,
+  SettingOutlined,
+  StockOutlined,
+  LeftOutlined
+} from '@ant-design/icons'
 
 const NAV_SECTIONS = [
-  { key: 'home', label: '首页概览', icon: '📊', path: '/' },
-  { key: 'market', label: '市场分析', icon: '📈', path: '/market' },
-  { key: 'alloc', label: '资产配置', icon: '🎯', path: '/allocation' },
-  { key: 'backtest', label: '回测分析', icon: '⏱', path: '/backtest' },
-  { key: 'settings', label: '系统设置', icon: '⚙', path: '/settings' },
+  { key: 'home', label: '首页概览', icon: <DashboardOutlined />, path: '/' },
+  { key: 'market', label: '市场分析', icon: <LineChartOutlined />, path: '/market' },
+  { key: 'alloc', label: '资产配置', icon: <PieChartOutlined />, path: '/allocation' },
+  { key: 'backtest', label: '回测分析', icon: <HistoryOutlined />, path: '/backtest' },
+  { key: 'settings', label: '系统设置', icon: <SettingOutlined />, path: '/settings' },
 ]
 
 export default function Layout({ children }) {
@@ -15,7 +24,9 @@ export default function Layout({ children }) {
       {/* Sidebar */}
       <aside className="sidebar">
         <div className="sidebar-brand">
-          <div className="brand-icon">📊</div>
+          <div className="brand-icon">
+            <StockOutlined style={{ fontSize: 18, color: 'var(--accent-blue)' }} />
+          </div>
           <div>
             <div className="brand-text">ETF动态配置系统</div>
             <div className="brand-sub">Dynamic Allocation</div>
@@ -38,8 +49,9 @@ export default function Layout({ children }) {
           ))}
         </nav>
 
-        <div className="sidebar-footer">
-          ◀ 收起菜单
+        <div className="sidebar-footer" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <LeftOutlined style={{ fontSize: 11 }} />
+          <span>收起菜单</span>
         </div>
       </aside>
 
